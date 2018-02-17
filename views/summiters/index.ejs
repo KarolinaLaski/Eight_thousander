@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>Meet the summiters</h2>
+    </div>
+  </div>
+  <div class="row">
+    <% summiters.forEach(function(summiter){ %>
+    <div class="col-lg-3">
+      <figure class="snip1585">
+        <img src=" https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample70.jpg" alt=" <%= summiter.name %>" />
+        <figcaption>
+          <h3> <%= summiter.name %></h3>
+        </figcaption>
+        <a href='/summiters/<%= summiter._id %>'></a>
+      </figure>
+    </div>
+    <% }); %>
+  </div>
+</div>
+
+<% include ../partials/footer %>

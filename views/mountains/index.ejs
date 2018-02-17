@@ -1,0 +1,59 @@
+<% include ../partials/header %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>The mountains</h2>
+    </div>
+  </div>
+  <div class="row">
+    <% mountains.forEach(function(mountain){ %>
+    <div class="col-lg-3">
+      <figure class="snip1585">
+        <img src=" <%= mountain.image %>" alt=" <%= mountain.name %>" />
+        <figcaption>
+          <h3> <%= mountain.name %></h3>
+        </figcaption>
+        <a href='/mountains/<%= mountain._id %>'></a>
+      </figure>
+    </div>
+    <% }); %>
+  </div>
+</div>
+
+<!-- <div class="container">
+  <% mountains.forEach(function(mountain){ %>
+  <div class="row">
+    <div class="col-lg-4">
+      <a href='/mountains/<%= mountain._id %>'><img style="width:100%" src=" <%= mountain.image %>"></a>
+    </div>
+    <div class="col-lg-4">
+        <h3> <%= mountain.name %> </h3>
+        <p>
+           <%= mountain.description %>
+        </p>
+    </div>
+    <div class="col-lg-4">
+      <h4>Details:</h4>
+      <ul>
+        <li>
+          <strong>Height:</strong> <%= mountain.height %>
+        </li>
+        <li>
+          <strong>Location:</strong> <%= mountain.location %>
+        </li>
+        <li>
+          <strong>Ascents:</strong> <%= mountain.ascents %>
+        </li>
+        <li>
+          <strong>Deaths:</strong> <%= mountain.deaths %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-12">
+        <hr />
+    </div>
+  </div>
+  <% }); %>
+</div> -->
+
+<% include ../partials/footer %>

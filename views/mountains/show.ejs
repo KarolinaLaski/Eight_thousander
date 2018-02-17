@@ -1,0 +1,47 @@
+<% include ../partials/header %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="thumbnail">
+        <img class="img-responsive" src="<%= mountain.image %>" style="width:100%">
+        <div class="caption-full">
+          <h2><a><%=mountain.name%></a></h2>
+          <p><%= mountain.description %></p>
+        </div>
+        <hr/>
+        <h4>Details:</h4>
+        <ul>
+          <li>
+            <strong>Summiters:</strong>
+            <ul>
+              <% mountain.summiters.forEach(function(summiter){ %>
+                <li>
+                  <%= summiter.name %> - (<%= summiter.nationality %>)
+                </li>
+              <% }); %>
+            </ul>
+          </li>
+          <li>
+            <strong>Height:</strong> <%= mountain.height %>
+          </li>
+          <li>
+            <strong>Location:</strong> <%= mountain.location %>
+          </li>
+          <li>
+            <strong>Ascents:</strong> <%= mountain.ascents %>
+          </li>
+          <li>
+            <strong>Deaths:</strong> <%= mountain.deaths %>
+          </li>
+        </ul>
+        <hr />
+        <div style="text-align:center;">
+          <h4>Who else has summited the mountain?</h4>
+          <a class="btn btn-default btn-large" href="<%= mountain._id %>/summiters/new">Add new summiter</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include ../partials/footer %>

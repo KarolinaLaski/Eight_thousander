@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="thumbnail">
+        <img class="img-responsive" src="<%= summiter.image %>" style="width:100%">
+        <div class="caption-full">
+          <h4><%= summiter.name %></h4>
+          <p>
+            <strong>Birthday: </strong> <%= summiter.birthday.toDateString() %><br/>
+            <strong>Country: </strong> <%= summiter.nationality %>
+          </p>
+          <hr />
+          <h4>About the climber</h4>
+          <p>
+            <%= summiter.about %>
+          </p>
+          <hr />
+          <strong>Mountains climbed:</strong>
+          <ul>
+            <% summiter.mountains.forEach(function(mountain){ %>
+              <li>
+                <%= mountain.name %>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<% include ../partials/footer %>
