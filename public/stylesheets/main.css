@@ -204,3 +204,25 @@ hr {
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
 }
+
+div#buttons_box {
+  text-align: center;
+  margin-top: 150px;
+}
+
+div#buttons_box > a {
+    color: #ccc;
+    font-weight: 800;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 70px;
+    width: 50%;
+    font-size: 30px;
+    position: relative;
+    transition: 0.5s ease-in;
+    text-decoration: none;
+}
+
+div#buttons_box > a:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #444;
+}

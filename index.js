@@ -35,6 +35,10 @@ mongoose.connect("mongodb://localhost/eight_thousander");
 //   deaths: 223
 // });
 
+app.get("/", function(req, res){
+  res.render("index");
+});
+
 app.get("/mountains", function(req, res){
   Mountain.find({}, function(err, allMountains){
     if(err){
