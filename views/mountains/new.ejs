@@ -3,6 +3,15 @@
     <div class="row text-center">
           <h2> Get the hold of a new mountain to share?</h2>
         <div class="thumbnail" style="margin:auto;width:50%;">
+          <% if(typeof errors !== 'undefined') { %>
+            <ul>
+            <%  errors.forEach(function(error){ %>
+                <li>
+                <%=  error.msg %>
+                </li>
+            <%  }); %>
+            </ul>
+          <% } %>
             <form action="/mountains" method="POST">
                 <div class="form-group">
                     <input class="form-control" type="text" name="name" placeholder="Name">

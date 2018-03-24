@@ -1,7 +1,10 @@
 var mongoose = require("mongoose");
 
 var summiterSchema = mongoose.Schema({
-    name: String,
+    name: {
+      type: String,
+      required: "Name cannot be blank!"
+    },
     nationality: String,
     image: String,
     birthday: { type: Date, default: new Date() },

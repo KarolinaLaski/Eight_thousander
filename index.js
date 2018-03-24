@@ -1,14 +1,16 @@
 var express     = require("express"),
-app         = express(),
-bodyParser  = require("body-parser"),
-mongoose    = require("mongoose"),
-Mountain    = require("./models/mountain"),
-Summiter    = require("./models/summiter"),
-seedDB      = require("./seeds");
+    app         = express(),
+    bodyParser  = require("body-parser"),
+    mongoose    = require("mongoose"),
+    validator   = require('express-validator'),
+    Mountain    = require("./models/mountain"),
+    Summiter    = require("./models/summiter"),
+    seedDB      = require("./seeds");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use(validator());
 // seedDB();
 
 mongoose.connect("mongodb://localhost/eight_thousander");
@@ -54,31 +56,47 @@ app.get("/mountains/new", function(req, res){
 });
 
 app.post("/mountains", function(req, res){
-  var name = req.body.name;
-  var image = req.body.image;
-  var desc = req.body.description;
-  var height = req.body.height;
-  var location = req.body.location;
-  var ascents = req.body.ascents;
-  var deaths = req.body.deaths;
 
-  var newMountain = {
-    name: name,
-    image: image,
-    description: desc,
-    height: height,
-    location: location,
-    ascents: ascents,
-    deaths: deaths
-  };
+  req.checkBody("name", "The field cannot be empty").isEmpty();
 
-  Mountain.create(newMountain, function(err, mountainCreated){
-    if(err){
-      console.log(err)
-    } else {
-      res.redirect("/mountains")
-    }
-  });
+  req.checkBody("image", "The field cannot be empty").isEmpty();
+
+  req.checkBody("desc", "The field cannot be empty").isEmpty();
+
+  var errors = req.validationErrors();
+  if (errors) {
+     console.log(errors);
+     res.render('mountains/new', { errors: errors });
+     return;
+  } else {
+    var name = req.body.name;
+    var image = req.body.image;
+    var desc = req.body.description;
+    var height = req.body.height;
+    var location = req.body.location;
+    var ascents = req.body.ascents;
+    var deaths = req.body.deaths;
+
+    var newMountain = {
+      name: name,
+      image: image,
+      description: desc,
+      height: height,
+      location: location,
+      ascents: ascents,
+      deaths: deaths
+    };
+
+    Mountain.create(newMountain, function(err, mountainCreated){
+      if(err){
+        console.log(err)
+      } else {
+        res.redirect("/mountains")
+      }
+    });
+  }
+
+
 });
 
 app.get("/mountains/:id", function(req, res){

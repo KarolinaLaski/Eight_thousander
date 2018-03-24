@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 
+
 var mountainSchema = new mongoose.Schema({
   name: String,
   image: String,
